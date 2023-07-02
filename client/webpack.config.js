@@ -19,16 +19,10 @@ module.exports = () => {
     },
     plugins: [
       new HtmlWebpackPlugin({
-        template: './src/index.html',
+        template: './index.html',
         inject: true,
         chunks: ['main'],
         filename: 'index.html',
-      }),
-      new HtmlWebpackPlugin({
-        template: './src/install.html',
-        inject: true,
-        chunks: ['install'],
-        filename: 'install.html',
       }),
 
       new WebpackPwaManifest({
