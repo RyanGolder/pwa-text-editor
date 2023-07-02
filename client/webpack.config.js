@@ -18,12 +18,61 @@ module.exports = () => {
       path: path.resolve(__dirname, 'dist'),
     },
     plugins: [
-      
+      new HtmlWebpackPlugin({
+        template: './src/index.html',
+        inject: true,
+        chunks: ['main'],
+        filename: 'index.html',
+      }),
+      new HtmlWebpackPlugin({
+        template: './src/install.html',
+        inject: true,
+        chunks: ['install'],
+        filename: 'install.html',
+      }),
+
+      new WebpackPwaManifest({
+        name: 'Jate Text Editor',
+        short_name: 'Jate',
+        description: 'An application for a live text editor.',
+        background_color: '#ffffff',
+        crossorigin: 'use-credentials', //can be null, use-credentials or anonymous
+        icons: [
+          {
+            src: path.resolve('src/images/logo.png'),
+            sizes: [96, 128, 192, 256, 384, 512], // multiple sizes
+          },
+          {
+            src: path.resolve('src/images/logo.png'),
+            size: '1024x1024', // you can also use the specifications pattern
+          },
+          {
+            src: path.resolve('src/images/logo.png'),
+            size: '1024x1024',
+            purpose: 'maskable',
+          },
+    ],
+      }),
+      new InjectManifest({
+        swSrc: './src-sw.js',
+        swDest: 'sw.js',
+      }),
     ],
 
     module: {
       rules: [
-        
+        {
+          test: /\.css$/i,
+          use: ['style-loader', 'css-loader'],
+        },
+
+        {
+          test: /\.js$/,
+          exclude: /node_modules/,
+          use: {
+            loader: 'babel-loader',
+          },
+        },
       ],
     },
   };
