@@ -36,6 +36,7 @@ Jate is a live text editor application that allows you to create and edit text c
 ## Links
 
 https://github.com/RyanGolder/pwa-text-editor
+https://pwa-text-editor-rwg-8f9b6c51a974.herokuapp.com/
 
 ## Contributing
 If you wish to contribute to this employee database manager, please refer to the following: 
